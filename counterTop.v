@@ -10,7 +10,7 @@ module cntrTop(
     wire [3:0] count;
     assign an = 4'b1110;
     
-    Synchronizer #(.NUMBITS(1)) synch1 (.clk(clk), .in(sw), .out(synchWire));
+    synchronizer #(.NUMBITS(1)) synch1 (.clk(clk), .in(sw), .out(synchWire));
     deBounce #(.CLKSPDMHZ(100),.DELAYMS(5)) db1(.clk(clk), .reset(reset), .in(synchWire), .out(dbWire));
     oneShot uut(.clk(clk), .in(dbWire), .out(cntEn), .reset(reset));
     simple4cnt cnt(.clk(clk), .reset(reset), .cntEn(cntEn), .count(count));
